@@ -1,1 +1,3 @@
 # JanKenPo
+
+This is a simple RPG with the simple game Rock-Paper-Scissors as the base. A player will select new game, which will load the game interface. On this screen, they will be able to select either: rock, paper or scissors. Once this is done, the program will determing the AI's attack and determine a winner. The winner deals some damage to the loser. This continues until either the player or the AI is out of HP. If the player wins, they are allowed to select a reward: an increase in either HP, Power, or Defense. If they lose, their stats are returned to the base. There are a total of 15 fights that can be done against 9 different oppnents. Can you beat them all? 

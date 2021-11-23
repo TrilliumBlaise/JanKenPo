@@ -421,6 +421,7 @@ const checkWinner = (pAttack, eAttack) => {
 
 const displayResults = (winner, pAttack, eAttack) => {
     const okBtn = document.querySelector(".ok");
+    okBtn.toggleAttribute("hidden", true);
     const attacks = document.querySelector(".choose-attack");
     const results = document.querySelector(".results");
     const resultsText = document.querySelector(".info h2");

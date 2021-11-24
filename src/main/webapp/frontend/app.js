@@ -154,6 +154,7 @@ const windowStart = () => {
             document.querySelector(".window").classList.replace("fadeIn", "fadeOut");
             document.querySelector(".game").classList.replace("fadeOut", "fadeIn");
             setUpGame(50, 10, 5);
+            startOfGame();
         }
     })
 }
@@ -170,7 +171,6 @@ const setUpGame = (setHP, setPower, setDef) => {
     enemyMaxHP = enemy.hp;
     enemyCurrentHP = enemyMaxHP;
     console.log(player, enemy);
-    startOfGame();
 }
 
 //Start of the game
@@ -269,7 +269,7 @@ const displayResults = (winner, pAttack, eAttack) => {
             location.reload()
         })
     }
-    
+    console.log(`count was at ${count}`);
     if (count <=15) {
         //Function to reset the values if enemy is dead, level up the player and create a new enemy to fight
         if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
@@ -279,7 +279,7 @@ const displayResults = (winner, pAttack, eAttack) => {
             const levelUpScreen = document.querySelector(".level-up");
             attacks.classList.replace("fadeIn", "fadeOut");
             levelUpScreen.classList.replace("fadeOut", "fadeIn");
-            console.log("count");
+            console.log(`count is now at ${count}`);
 
             document.querySelectorAll("button").forEach(button => {
                 button.addEventListener("click", () => {
@@ -311,6 +311,7 @@ const displayResults = (winner, pAttack, eAttack) => {
                     levelUpScreen.classList.replace("fadeIn", "fadeOut");
                     attacks.classList.replace("fadeOut", "fadeIn");
                     resultsText.innerHTML = "Choose your attack";
+                    return;
                 })
             })
         }

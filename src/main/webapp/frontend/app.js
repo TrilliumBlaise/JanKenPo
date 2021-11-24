@@ -287,6 +287,10 @@ const displayResults = (winner, pAttack, eAttack) => {
 }
 
 document.querySelectorAll("button").forEach(button => {
+    const levelUpScreen = document.querySelector(".level-up");
+    const attacks = document.querySelector(".choose-attack");
+    const results = document.querySelector(".results");
+    const resultsText = document.querySelector(".info h2");
     button.addEventListener("click", () => {
         if (button.className === "start" || button.className === "instructions" || button.className === "enter") {
             return;

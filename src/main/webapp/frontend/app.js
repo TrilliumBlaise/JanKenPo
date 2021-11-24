@@ -248,12 +248,8 @@ const displayResults = (winner, pAttack, eAttack) => {
     }
     //Functiont to continue game if player and enemy are not dead
     if (playerCurrentHP > 0 && enemyCurrentHP > 0) {
-        okBtn.addEventListener("click", () => {
-            attacks.classList.replace("fadeOut", "fadeIn");
-            results.classList.replace("fadeIn", "fadeOut");
-            resultsText.innerHTML = "Choose your next attack!"
-            return;
-        })
+        attacks.classList.replace("fadeIn", "fadeOut");
+        results.classList.replace("fadeOut", "fadeIn");
     }
 
     //Function to reload game if player is dead
@@ -293,6 +289,12 @@ const displayResults = (winner, pAttack, eAttack) => {
 document.querySelectorAll("button").forEach(button => {
     button.addEventListener("click", () => {
         if (button.className === "start" || button.className === "instructions" || button.className === "enter") {
+            return;
+        }
+        if (button.className === "ok") {
+            attacks.classList.replace("fadeOut", "fadeIn");
+            results.classList.replace("fadeIn", "fadeOut");
+            resultsText.innerHTML = "Choose your next attack!"
             return;
         }
         if (button.className === "hp") {

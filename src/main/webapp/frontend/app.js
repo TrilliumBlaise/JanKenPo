@@ -269,49 +269,58 @@ const displayResults = (winner, pAttack, eAttack) => {
             location.reload()
         })
     }
+    
+    if (count <=15) {
+        //Function to reset the values if enemy is dead, level up the player and create a new enemy to fight
+        if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
+            results.classList.replace("fadeIn", "fadeOut");
+            count++;
+            resultsText.innerHTML = "Choose your Reward!<br>The stat you choose will increase by 5<br>(10 if you choose HP)"
+            const levelUpScreen = document.querySelector(".level-up");
+            attacks.classList.replace("fadeIn", "fadeOut");
+            levelUpScreen.classList.replace("fadeOut", "fadeIn");
+            console.log("count");
 
-    //Function to reset the values if enemy is dead, level up the player and create a new enemy to fight
-    if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
-        results.classList.replace("fadeIn", "fadeOut");
-        count++;
-        resultsText.innerHTML = "Choose your Reward!<br>The stat you choose will increase by 5<br>(10 if you choose HP)"
-        const levelUpScreen = document.querySelector(".level-up");
-        attacks.classList.replace("fadeIn", "fadeOut");
-        levelUpScreen.classList.replace("fadeOut", "fadeIn");
-        console.log("count");
+            document.querySelectorAll("button").forEach(button => {
+                button.addEventListener("click", () => {
+                    if (button.className === "hp") {
+                        setUpGame((player.hp + 10), player.power, player.def);
+                        console.log(player, enemy)
+                        document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+                        document.querySelector(".computer-player h2").innerHTML = enemyName;
+                        document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
 
-        document.querySelectorAll("button").forEach(button => {
-            button.addEventListener("click", () => {
-                if (button.className === "hp") {
-                    setUpGame((player.hp + 10), player.power, player.def);
-                    console.log(player, enemy)
-                    document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
-                    document.querySelector(".computer-player h2").innerHTML = enemyName;
-                    document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
+                    }
+                    if (button.className === "power") {
+                        setUpGame(player.hp, (player.power + 5), player.def);
+                        console.log(player, enemy)
+                        document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+                        document.querySelector(".computer-player h2").innerHTML = enemyName;
+                        document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
 
-                }
-                if (button.className === "power") {
-                    setUpGame(player.hp, (player.power + 5), player.def);
-                    console.log(player, enemy)
-                    document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
-                    document.querySelector(".computer-player h2").innerHTML = enemyName;
-                    document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
+                    }
+                    if (button.className === "defense") {
+                        setUpGame(player.hp, player.power, (player.def + 5));
+                        console.log(player, enemy)
+                        document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+                        document.querySelector(".computer-player h2").innerHTML = enemyName;
+                        document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
 
-                }
-                if (button.className === "defense") {
-                    setUpGame(player.hp, player.power, (player.def + 5));
-                    console.log(player, enemy)
-                    document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
-                    document.querySelector(".computer-player h2").innerHTML = enemyName;
-                    document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
-
-                }
-                console.log(button);
-                levelUpScreen.classList.replace("fadeIn", "fadeOut");
-                attacks.classList.replace("fadeOut", "fadeIn");
-                resultsText.innerHTML = "Choose your attack";
+                    }
+                    console.log(button);
+                    levelUpScreen.classList.replace("fadeIn", "fadeOut");
+                    attacks.classList.replace("fadeOut", "fadeIn");
+                    resultsText.innerHTML = "Choose your attack";
+                })
             })
-        })
+        }
+    }
+    else {
+        resultsText.innerHTML = "Congratulations you are now the ruler of the Pond!<br>Rest well champion!";
+        okBtn.style.opacity = 0;
+        okBtn.style.pointerEvents = "none";
+        endBtn.style.opacity = 1;
+        endBtn.style.pointerEvents = "all";
     }
 }
 

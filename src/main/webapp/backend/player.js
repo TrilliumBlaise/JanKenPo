@@ -171,7 +171,7 @@ export default class Player {
                 default:
                     return "Error occured"
             }
-            const temp = new Player(name, 50, 15, 0);
+            const temp = new Player(name, 10, 15, 0);
             return temp;
         } else if (count >= 5 && count <= 9) {
             switch (ran) {

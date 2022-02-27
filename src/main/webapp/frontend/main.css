@@ -129,10 +129,18 @@ button {
     pointer-events: none;
 }
 
-.game .pause-button {
+.game .pause-button{
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    orientation: vertical;
+    z-index: 1;
 }
 
 .game-pause,

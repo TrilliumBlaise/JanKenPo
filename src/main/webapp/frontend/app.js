@@ -163,6 +163,25 @@ const windowStart = () => {
 const setUpGame = (setHP, setPower, setDef) => {
     console.log(setHP, setPower, setDef);
     const pause = document.querySelector(".pause");
+    const instructionsBtn = document.querySelector(".instructions2");
+    const instructionsWindow = document.querySelector(".window-instructions");
+
+    instructionsBtn.addEventListener("click", () => {
+        console.log("Hello!");
+        document.querySelector(".game-start").classList.replace("fadeIn", "fadeOut");
+        instructionsWindow.classList.replace("fadeOut", "fadeIn");
+        for (let i = 1; i < 7; i++) {
+            const paragraph = `#paragraph-${i}`
+            const current = document.querySelector(paragraph);
+            if (current.innerHTML === "paragraph-1") {
+                current.style.opacity = 1;
+            } else
+                current.style.opacity = 0;
+
+        }
+    })
+
+
     player = new Player(playerName, setHP, setPower, setDef);
     playerMaxHP = player.hp;
     playerCurrentHP = playerMaxHP;
@@ -282,7 +301,7 @@ document.querySelectorAll("button").forEach(button => {
     const results = document.querySelector(".results");
     const resultsText = document.querySelector(".info h2");
     button.addEventListener("click", () => {
-        if (button.className === "start" || button.className === "instructions" || button.className === "enter") {
+        if (button.className === "start" || button.className === "instructions" || button.className === "enter" || button.className === "pause") {
             return;
         }
         if (button.className === "ok") {

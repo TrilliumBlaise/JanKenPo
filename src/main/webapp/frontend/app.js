@@ -170,8 +170,10 @@ const windowInstructions = () => {
 
 //Defines what the start screen can do
 const windowStart = () => {
+    console.log("windowStart"); 
     const inputName = document.querySelector("#name");
     const enterBtn = document.querySelector(".enter");
+    const regex = /[a-zA-Z]/;
     enterBtn.addEventListener("click", () => {
         if (inputName.value === "") {
             alert("Please enter your name.")
@@ -181,13 +183,13 @@ const windowStart = () => {
             alert("A name must have at least one character.")
             return;
         }
-            playerName = inputName.value;
-            document.querySelector(".window-start").classList.replace("fadeIn", "fadeOut");
-            document.querySelector(".window-home").classList.replace("fadeOut", "fadeIn");
-            document.querySelector(".window").classList.replace("fadeIn", "fadeOut");
-            document.querySelector(".game").classList.replace("fadeOut", "fadeIn");
-            setUpGame(50, 10, 5);
-            startOfGame();
+        playerName = inputName.value;
+        document.querySelector(".window-start").classList.replace("fadeIn", "fadeOut");
+        document.querySelector(".window-home").classList.replace("fadeOut", "fadeIn");
+        document.querySelector(".window").classList.replace("fadeIn", "fadeOut");
+        document.querySelector(".game").classList.replace("fadeOut", "fadeIn");
+        setUpGame(50, 10, 5);
+        startOfGame();
     })
 }
 

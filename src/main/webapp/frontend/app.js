@@ -197,9 +197,9 @@ const setUpGame = (setHP, setPower, setDef) => {
 const startOfGame = () => {
     console.log("Hello")
     document.querySelector(".human-player h2").innerHTML = playerName;
-    document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+    document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
     document.querySelector(".computer-player h2").innerHTML = enemyName;
-    document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
+    document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     document.querySelectorAll("img").forEach(img => {
         img.addEventListener("click", () => {
             const previousAttack = document.querySelector(".previous-attack");

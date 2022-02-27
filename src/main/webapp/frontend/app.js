@@ -72,9 +72,14 @@ const windowInstructions = () => {
     previousBtn.addEventListener("click", () => {
         console.log(previousBtn)
         switch (current.innerHTML) {
-            case "paragraph-6":
+            case "paragraph-7":
                 nextBtn.style.opacity = 1;
                 nextBtn.style.pointerEvents = "all";
+                current.innerHTML = "paragraph-6"
+                document.querySelector("#paragraph-7").classList.replace("fadeIn", "fadeOut");
+                document.querySelector("#paragraph-6").classList.replace("fadeOut", "fadeIn");
+                break;
+            case "paragraph-6":
                 current.innerHTML = "paragraph-5"
                 document.querySelector("#paragraph-6").classList.replace("fadeIn", "fadeOut");
                 document.querySelector("#paragraph-5").classList.replace("fadeOut", "fadeIn");
@@ -129,11 +134,16 @@ const windowInstructions = () => {
                 document.querySelector("#paragraph-5").classList.replace("fadeOut", "fadeIn");
                 break;
             case "paragraph-5":
-                nextBtn.style.opacity = 0;
-                nextBtn.style.pointerEvents = "none";
                 current.innerHTML = "paragraph-6"
                 document.querySelector("#paragraph-5").classList.replace("fadeIn", "fadeOut");
                 document.querySelector("#paragraph-6").classList.replace("fadeOut", "fadeIn");
+                break;
+             case "paragraph-6":
+                nextBtn.style.opacity = 0;
+                nextBtn.style.pointerEvents = "none";
+                current.innerHTML = "paragraph-7"
+                document.querySelector("#paragraph-6").classList.replace("fadeIn", "fadeOut");
+                document.querySelector("#paragraph-7").classList.replace("fadeOut", "fadeIn");
                 break;
         }
     })

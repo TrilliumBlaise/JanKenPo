@@ -28,8 +28,9 @@ const windowHome = () => {
     })
     instructionsBtn.addEventListener("click", () => {
         console.log(instructionsBtn);
-        homeWindow.classList.replace("fadeIn", "fadeOut");
-        instructionsWindow.classList.replace("fadeOut", "fadeIn");
+        //homeWindow.classList.replace("fadeIn", "fadeOut");
+        instructionsWindow.style.zIndex = 1;
+        //instructionsWindow.classList.replace("fadeOut", "fadeIn");
         for (let i = 1; i < 7; i++) {
             const paragraph = `#paragraph-${i}`
             const current = document.getElementById(paragraph);
@@ -133,14 +134,15 @@ const windowInstructions = () => {
         document.querySelector("#paragraph-5").classList.add("fadeOut");
         document.querySelector("#paragraph-6").classList.remove("fadeIn");
         document.querySelector("#paragraph-6").classList.add("fadeOut");
-        document.querySelector(".window-instructions").classList.replace("fadeIn", "fadeOut");
-        document.querySelector(".window-home").classList.replace("fadeOut", "fadeIn");
+        document.querySelector(".window-instructions").style.zIndex = -1;
+        //document.querySelector(".window-instructions").classList.replace("fadeIn", "fadeOut");
+        //document.querySelector(".window-home").classList.replace("fadeOut", "fadeIn");
     })
 }
 
 //Defines what the start screen can do
 const windowStart = () => {
-    console.log("windowStart");
+    console.log("windowStart"); 
     const inputName = document.querySelector("#name");
     const enterBtn = document.querySelector(".enter");
     enterBtn.addEventListener("click", () => {
@@ -168,8 +170,9 @@ const setUpGame = (setHP, setPower, setDef) => {
 
     instructionsBtn.addEventListener("click", () => {
         console.log("Hello!");
-        document.querySelector(".game-start").classList.replace("fadeIn", "fadeOut");
-        instructionsWindow.classList.replace("fadeOut", "fadeIn");
+      //  document.querySelector(".game-start").classList.replace("fadeIn", "fadeOut");
+      //  instructionsWindow.classList.replace("fadeOut", "fadeIn");
+      instructionsWindow.style.zIndex = 1;
         for (let i = 1; i < 7; i++) {
             const paragraph = `#paragraph-${i}`
             const current = document.querySelector(paragraph);

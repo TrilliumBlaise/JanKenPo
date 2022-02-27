@@ -86,7 +86,8 @@ button {
 }
 
 .window-start input {
-    background-color: navy;
+    background-color: rgb(0, 0, 182);
+    border: 5px solid black;
     color: lightskyblue;
     font-family: Bubble;
     font-size: 60px;

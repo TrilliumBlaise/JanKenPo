@@ -170,14 +170,17 @@ const windowInstructions = () => {
 
 //Defines what the start screen can do
 const windowStart = () => {
-    console.log("windowStart"); 
     const inputName = document.querySelector("#name");
     const enterBtn = document.querySelector(".enter");
     enterBtn.addEventListener("click", () => {
-        console.log(enterBtn)
         if (inputName.value === "") {
             alert("Please enter your name.")
-        } else {
+            return;
+        } 
+        if (!(regex.test(inputName.value))) {
+            alert("A name must have at least one character.")
+            return;
+        }
             playerName = inputName.value;
             document.querySelector(".window-start").classList.replace("fadeIn", "fadeOut");
             document.querySelector(".window-home").classList.replace("fadeOut", "fadeIn");
@@ -185,7 +188,6 @@ const windowStart = () => {
             document.querySelector(".game").classList.replace("fadeOut", "fadeIn");
             setUpGame(50, 10, 5);
             startOfGame();
-        }
     })
 }
 
@@ -308,6 +310,7 @@ const displayResults = (winner, pAttack, eAttack) => {
 document.querySelector('.exit').addEventListener('click', () => {
     window.location.reload();
 });
+
 
 document.querySelectorAll("button").forEach(button => {
     const levelUpScreen = document.querySelector(".level-up");

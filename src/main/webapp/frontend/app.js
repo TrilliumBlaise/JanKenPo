@@ -18,6 +18,7 @@ const windowHome = () => {
     const startBtn = document.querySelector(".start");
 
     const instructionsBtn = document.querySelector(".instructions")
+    const instructionsBtn2 = document.querySelector(".instructions2")
     const homeWindow = document.querySelector(".window-home");
     const startWindow = document.querySelector(".window-start");
     const instructionsWindow = document.querySelector(".window-instructions");
@@ -26,6 +27,7 @@ const windowHome = () => {
         homeWindow.classList.replace("fadeIn", "fadeOut");
         startWindow.classList.replace("fadeOut", "fadeIn");
     })
+    //Adds function to the instructions button on the home screen
     instructionsBtn.addEventListener("click", () => {
         console.log(instructionsBtn);
         //homeWindow.classList.replace("fadeIn", "fadeOut");
@@ -34,11 +36,27 @@ const windowHome = () => {
         for (let i = 1; i < 7; i++) {
             const paragraph = `#paragraph-${i}`
             const current = document.getElementById(paragraph);
+            
             if (current.innerHTML === "paragraph-1") {
                 current.style.opacity = 1;
             } else
                 current.style.opacity = 0;
-
+        }
+    });
+    //Adds function to the instructions button on the game screen
+    instructionsBtn2.addEventListener("click", () => {
+        console.log(instructionsBtn);
+        //homeWindow.classList.replace("fadeIn", "fadeOut");
+        instructionsWindow.style.zIndex = 1;
+        //instructionsWindow.classList.replace("fadeOut", "fadeIn");
+        for (let i = 1; i < 7; i++) {
+            const paragraph = `#paragraph-${i}`
+            const current = document.getElementById(paragraph);
+            
+            if (current.innerHTML === "paragraph-1") {
+                current.style.opacity = 1;
+            } else
+                current.style.opacity = 0;
         }
     })
 }
@@ -164,27 +182,6 @@ const windowStart = () => {
 //Start the game
 const setUpGame = (setHP, setPower, setDef) => {
     console.log(setHP, setPower, setDef);
-    const pause = document.querySelector(".pause");
-    const instructionsBtn = document.querySelector(".instructions2");
-    const instructionsWindow = document.querySelector(".window-instructions");
-
-    instructionsBtn.addEventListener("click", () => {
-        console.log("Hello!");
-      //  document.querySelector(".game-start").classList.replace("fadeIn", "fadeOut");
-      //  instructionsWindow.classList.replace("fadeOut", "fadeIn");
-      instructionsWindow.style.zIndex = 1;
-        for (let i = 1; i < 7; i++) {
-            const paragraph = `#paragraph-${i}`
-            const current = document.querySelector(paragraph);
-            if (current.innerHTML === "paragraph-1") {
-                current.style.opacity = 1;
-            } else
-                current.style.opacity = 0;
-
-        }
-    })
-
-
     player = new Player(playerName, setHP, setPower, setDef);
     playerMaxHP = player.hp;
     playerCurrentHP = playerMaxHP;

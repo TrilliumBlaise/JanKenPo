@@ -295,6 +295,10 @@ const displayResults = (winner, pAttack, eAttack) => {
     }
 }
 
+document.querySelector('.exit').addEventListener('click', () => {
+    window.location.reload();
+});
+
 document.querySelectorAll("button").forEach(button => {
     const levelUpScreen = document.querySelector(".level-up");
     const attacks = document.querySelector(".choose-attack");
@@ -313,28 +317,26 @@ document.querySelectorAll("button").forEach(button => {
         if (button.className === "hp") {
             setUpGame((player.hp + 10), player.power, player.def);
             console.log(player, enemy)
-            document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+            document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
             document.querySelector(".computer-player h2").innerHTML = enemyName;
-            document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
+            document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
 
         }
         if (button.className === "power") {
             setUpGame(player.hp, (player.power + 5), player.def);
             console.log(player, enemy)
-            document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+            document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
             document.querySelector(".computer-player h2").innerHTML = enemyName;
-            document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
+            document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
 
         }
         if (button.className === "defense") {
             setUpGame(player.hp, player.power, (player.def + 5));
             console.log(player, enemy)
-            document.querySelector(".human-player h3").innerHTML = `${playerCurrentHP}/${playerMaxHP}`;
+            document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
             document.querySelector(".computer-player h2").innerHTML = enemyName;
-            document.querySelector(".computer-player h3").innerHTML = `${enemyCurrentHP}/${enemyMaxHP}`;
-
+            document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
         }
-        console.log(button);
         levelUpScreen.classList.replace("fadeIn", "fadeOut");
         attacks.classList.replace("fadeOut", "fadeIn");
         resultsText.innerHTML = "Choose your attack";

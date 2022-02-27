@@ -102,32 +102,24 @@ button {
     font-family: Bubble;
     height: 100%;
     width: 100%;
-    top: 50%;
-    left: 50%;
-    justify-content: center;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
     align-items: center;
     z-index: -1;
 }
 
-.window-instructions h2 {
-    height: 100%;
-    font-size: 50px;
-}
-
 .window-instructions .p {
-    width: 100%;
-    height: 100%;
-    left: 0px;
     position: absolute;
+    text-align: center;
+    font-size: 50px;
+    width: 50%;
+    height: 50%;
 }
 
 .window-instructions .button {
-    position: fixed;
-    bottom: 10px;
+    position: relative;
+    margin-top: 300px;
 }
 
 .window-instructions .previous {
@@ -135,25 +127,29 @@ button {
     pointer-events: none;
 }
 
-.game .pause-button{
-    position: absolute;
-    top: 0;
-    left: 0;
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .menu{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    align-self: flex-start;
     orientation: vertical;
     z-index: 1;
 }
 
-.game-pause,
-.game-start {
+.game-pause {
     position: absolute;
+    align-self: center;
+}
+.game-start {
+    position: relative;
+    display: flex;
     width: 100%;
     height: 100%;
+    align-self: center;
     align-items: center;
 }
 
@@ -183,7 +179,7 @@ button {
     position: absolute;
     width: 100%;
     height: 70%;
-    top: 25%;
+    top: 40%;
     display: flex;
     align-items: center;
     justify-content: center;

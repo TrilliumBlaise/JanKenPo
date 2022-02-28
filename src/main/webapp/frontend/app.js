@@ -362,6 +362,3 @@ document.querySelectorAll("button").forEach(button => {
 windowHome();
 windowInstructions();
 windowStart();
-
-
-//Temp delete later

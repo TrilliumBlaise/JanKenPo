@@ -301,7 +301,7 @@ const displayResults = (winner, pAttack, eAttack) => {
     if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
         results.classList.replace("fadeIn", "fadeOut");
         count++;
-        resultsText.innerHTML = "Choose your Reward!"
+        resultsText.innerHTML = "You win!<br>Choose your Reward!"
         const levelUpScreen = document.querySelector(".level-up");
         attacks.classList.replace("fadeIn", "fadeOut");
         levelUpScreen.classList.replace("fadeOut", "fadeIn");

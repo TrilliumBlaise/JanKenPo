@@ -244,6 +244,37 @@ const checkWinner = (pAttack, eAttack) => {
         return -1;
     }
 }
+function verifyWinLoss(){
+    const results = document.querySelector(".results");
+    const resultsText = document.querySelector(".info h2");
+    //Function to reload game if player is dead
+    if (playerCurrentHP === 0 && enemyCurrentHP > 0) {
+        const endBtn = document.querySelector(".end");
+        resultsText.innerHTML = "You have lost";
+        okBtn.style.opacity = 0;
+        okBtn.style.pointerEvents = "none";
+        endBtn.style.opacity = 1;
+        endBtn.style.pointerEvents = "all";
+
+        endBtn.addEventListener("click", () => {
+            location.reload()
+        })
+        return true;
+    }
+
+    //Function to reset the values if enemy is dead, level up the player and create a new enemy to fight
+    if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
+        results.classList.replace("fadeIn", "fadeOut");
+        count++;
+        resultsText.innerHTML = "You win!<br>Choose your Reward!"
+        const levelUpScreen = document.querySelector(".level-up");
+       // attacks.classList.replace("fadeIn", "fadeOut");
+        levelUpScreen.classList.replace("fadeOut", "fadeIn");
+        console.log(count);
+        return true;
+    }
+    return false;
+}
 
 const displayResults = (winner, pAttack, eAttack) => {
     const okBtn = document.querySelector(".ok");
@@ -278,41 +309,13 @@ const displayResults = (winner, pAttack, eAttack) => {
         document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     }
     //Functiont to continue game if player and enemy are not dead
-    if (playerCurrentHP > 0 && enemyCurrentHP > 0) {
         attacks.classList.replace("fadeIn", "fadeOut");
         results.classList.replace("fadeOut", "fadeIn");
-    }
-
-    //Function to reload game if player is dead
-    if (playerCurrentHP === 0 && enemyCurrentHP > 0) {
-        const endBtn = document.querySelector(".end");
-        resultsText.innerHTML = "You have lost";
-        okBtn.style.opacity = 0;
-        okBtn.style.pointerEvents = "none";
-        endBtn.style.opacity = 1;
-        endBtn.style.pointerEvents = "all";
-
-        endBtn.addEventListener("click", () => {
-            location.reload()
-        })
-    }
-
-    //Function to reset the values if enemy is dead, level up the player and create a new enemy to fight
-    if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
-        results.classList.replace("fadeIn", "fadeOut");
-        count++;
-        resultsText.innerHTML = "You win!<br>Choose your Reward!"
-        const levelUpScreen = document.querySelector(".level-up");
-        attacks.classList.replace("fadeIn", "fadeOut");
-        levelUpScreen.classList.replace("fadeOut", "fadeIn");
-        console.log(count);
-    }
 }
 
 document.querySelector('.exit').addEventListener('click', () => {
     window.location.reload();
 });
-
 
 document.querySelectorAll("button").forEach(button => {
     const levelUpScreen = document.querySelector(".level-up");
@@ -324,6 +327,9 @@ document.querySelectorAll("button").forEach(button => {
             return;
         }
         if (button.className === "ok") {
+            if(verifyWinLoss() == true){
+                return;
+            }
             attacks.classList.replace("fadeOut", "fadeIn");
             results.classList.replace("fadeIn", "fadeOut");
             resultsText.innerHTML = "Choose your next attack!"

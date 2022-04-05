@@ -152,7 +152,13 @@ button {
     align-self: center;
     align-items: center;
 }
-
+.enemies-beaten {
+    position: absolute;
+    width: 100%;
+    bottom: 15%;
+    text-align: center;
+    left: 5%;
+}
 .players {
     position: absolute;
     width: 100%;

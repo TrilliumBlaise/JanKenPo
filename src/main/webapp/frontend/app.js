@@ -14,7 +14,6 @@ console.log("game")
 
 //Defines what the home screen can do
 const windowHome = () => {
-    console.log("windowHome")
     const startBtn = document.querySelector(".start");
 
     const instructionsBtn = document.querySelector(".instructions")
@@ -29,14 +28,12 @@ const windowHome = () => {
     })
     //Adds function to the instructions button on the home screen
     instructionsBtn.addEventListener("click", () => {
-        console.log(instructionsBtn);
         //homeWindow.classList.replace("fadeIn", "fadeOut");
         instructionsWindow.style.zIndex = 1;
         //instructionsWindow.classList.replace("fadeOut", "fadeIn");
     });
     //Adds function to the instructions button on the game screen
     instructionsBtn2.addEventListener("click", () => {
-        console.log(instructionsBtn);
         //homeWindow.classList.replace("fadeIn", "fadeOut");
         instructionsWindow.style.zIndex = 1;
         //instructionsWindow.classList.replace("fadeOut", "fadeIn");
@@ -45,14 +42,12 @@ const windowHome = () => {
 
 //Defines what the instructions screen can do
 const windowInstructions = () => {
-    console.log("windowInstructions");
     const previousBtn = document.querySelector(".previous");
     const closeBtn = document.querySelector(".close");
     const nextBtn = document.querySelector(".next");
 
     let current = document.querySelector(".current");
     previousBtn.addEventListener("click", () => {
-        console.log(previousBtn)
         switch (current.innerHTML) {
             case "paragraph-7":
                 nextBtn.style.opacity = 1;
@@ -91,7 +86,6 @@ const windowInstructions = () => {
         }
     })
     nextBtn.addEventListener("click", () => {
-        console.log(nextBtn);
         switch (current.innerHTML) {
             case "paragraph-1":
                 previousBtn.style.opacity = 1;
@@ -130,7 +124,6 @@ const windowInstructions = () => {
         }
     })
     closeBtn.addEventListener("click", () => {
-        console.log(closeBtn);
         current.innerHTML = "paragraph-1"
         document.querySelector("#paragraph-1").classList.remove("fadeOut");
         document.querySelector("#paragraph-1").classList.add("fadeIn");
@@ -157,8 +150,7 @@ const windowInstructions = () => {
 }
 
 //Defines what the start screen can do
-const windowStart = () => {
-    console.log("windowStart"); 
+const windowStart = () => { 
     const inputName = document.querySelector("#name");
     const enterBtn = document.querySelector(".enter");
     const regex = /[a-zA-Z]/;
@@ -186,6 +178,7 @@ const setUpGame = (setHP, setPower, setDef) => {
     playerMaxHP = player.hp;
     playerCurrentHP = playerMaxHP;
     enemy = Player.setStats(count);
+    document.querySelector('.enemies-beaten).innerHTML = `Enemies Beaten: ${count}<br>Enemies Remaining: ${15-count}`
     enemyName = enemy.username;
     enemyMaxHP = enemy.hp;
     enemyCurrentHP = enemyMaxHP;

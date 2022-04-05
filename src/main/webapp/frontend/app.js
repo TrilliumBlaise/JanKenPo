@@ -33,15 +33,6 @@ const windowHome = () => {
         //homeWindow.classList.replace("fadeIn", "fadeOut");
         instructionsWindow.style.zIndex = 1;
         //instructionsWindow.classList.replace("fadeOut", "fadeIn");
-        for (let i = 1; i < 7; i++) {
-            const paragraph = `#paragraph-${i}`
-            const current = document.getElementById(paragraph);
-            
-            if (current.innerHTML === "paragraph-1") {
-                current.style.opacity = 1;
-            } else
-                current.style.opacity = 0;
-        }
     });
     //Adds function to the instructions button on the game screen
     instructionsBtn2.addEventListener("click", () => {
@@ -49,15 +40,6 @@ const windowHome = () => {
         //homeWindow.classList.replace("fadeIn", "fadeOut");
         instructionsWindow.style.zIndex = 1;
         //instructionsWindow.classList.replace("fadeOut", "fadeIn");
-        for (let i = 1; i < 7; i++) {
-            const paragraph = `#paragraph-${i}`
-            const current = document.getElementById(paragraph);
-            
-            if (current.innerHTML === "paragraph-1") {
-                current.style.opacity = 1;
-            } else
-                current.style.opacity = 0;
-        }
     })
 }
 
@@ -162,6 +144,12 @@ const windowInstructions = () => {
         document.querySelector("#paragraph-5").classList.add("fadeOut");
         document.querySelector("#paragraph-6").classList.remove("fadeIn");
         document.querySelector("#paragraph-6").classList.add("fadeOut");
+        document.querySelector("#paragraph-7").classList.remove("fadeIn");
+        document.querySelector("#paragraph-7").classList.add("fadeOut");
+        previousBtn.style.opacity = 0;
+        nextBtn.style.opacity = 1;
+        previousBtn.style.pointerEvents = "none";
+        nextBtn.style.pointerEvents = "all";
         document.querySelector(".window-instructions").style.zIndex = -1;
         //document.querySelector(".window-instructions").classList.replace("fadeIn", "fadeOut");
         //document.querySelector(".window-home").classList.replace("fadeOut", "fadeIn");
@@ -276,6 +264,33 @@ function verifyWinLoss(){
     return false;
 }
 
+
+function changeHPStatus(){
+
+    if(playerCurrentHP < playerMaxHP/4){
+        document.querySelector(".human-player h3").innerHTML =  `<span style = "color: red">HP: ${playerCurrentHP}/${playerMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    }
+    else if(playerCurrentHP < playerMaxHP/2){
+        document.querySelector(".human-player h3").innerHTML =  `<span style = "color: yellow">HP: ${playerCurrentHP}/${playerMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    }
+    else{
+        document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defensehe: ${player.def}`;
+    }
+    
+
+    if(enemyCurrentHP < enemyMaxHP/4){
+        console.log("Entered critical state");
+        document.querySelector(".computer-player h3").innerHTML =  `<span style = "color: red">HP: ${enemyCurrentHP}/${enemyMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    }
+    else if(enemyCurrentHP < enemyMaxHP/2){
+        document.querySelector(".computer-player h3").innerHTML =  `<span style = "color: yellow">P: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    }
+    else{
+        document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    }
+}
+
+
 const displayResults = (winner, pAttack, eAttack) => {
     const okBtn = document.querySelector(".ok");
     const attacks = document.querySelector(".choose-attack");
@@ -288,9 +303,10 @@ const displayResults = (winner, pAttack, eAttack) => {
         if (playerCurrentHP < 0) {
             playerCurrentHP = 0;
         }
-        resultsText.innerHTML = `${enemyName}\'s ${eAttack} beats ${playerName}\'s ${pAttack}<br>${enemyName} deals ${damage} damage to ${playerName}`;
-        document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
-        document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+        resultsText.innerHTML = `${enemyName}\'s ${eAttack} beats ${playerName}\'s ${pAttack}!<br>${enemyName} deals <span style = "color: red"> ${damage}</span> damage to ${playerName}`;
+        changeHPStatus();
+        //document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+        //document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     }
     if (winner === 0) {
         resultsText.innerHTML = `Both ${playerName} and ${enemyName} chose ${pAttack}<br>No damage is dealt`;
@@ -304,9 +320,10 @@ const displayResults = (winner, pAttack, eAttack) => {
             enemyCurrentHP = 0;
         }
         console.log(resultsText)
-        resultsText.innerHTML = `${playerName}\'s ${pAttack} beats ${enemyName}\'s ${eAttack}<br>${playerName} deals ${damage} damage to ${enemyName}`;
-        document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
-        document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+        resultsText.innerHTML = `${playerName}\'s ${pAttack} beats ${enemyName}\'s ${eAttack}!<br>${playerName} deals <span style = "color: green"> ${damage}</span> damage to ${enemyName}`;
+        changeHPStatus();
+       // document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+        //document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     }
     //Functiont to continue game if player and enemy are not dead
         attacks.classList.replace("fadeIn", "fadeOut");
@@ -338,9 +355,10 @@ document.querySelectorAll("button").forEach(button => {
         if (button.className === "hp") {
             setUpGame((player.hp + 10), player.power, player.def);
             console.log(player, enemy)
-            document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+           // document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
             document.querySelector(".computer-player h2").innerHTML = enemyName;
-            document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+            changeHPStatus();
+           // document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
 
         }
         if (button.className === "power") {

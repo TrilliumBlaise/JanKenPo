@@ -177,13 +177,11 @@ const windowStart = () => {
         document.querySelector(".window").classList.replace("fadeIn", "fadeOut");
         document.querySelector(".game").classList.replace("fadeOut", "fadeIn");
         setUpGame(50, 10, 5);
-        startOfGame();
     })
 }
 
 //Start the game
 const setUpGame = (setHP, setPower, setDef) => {
-    console.log(setHP, setPower, setDef);
     player = new Player(playerName, setHP, setPower, setDef);
     playerMaxHP = player.hp;
     playerCurrentHP = playerMaxHP;
@@ -191,13 +189,15 @@ const setUpGame = (setHP, setPower, setDef) => {
     enemyName = enemy.username;
     enemyMaxHP = enemy.hp;
     enemyCurrentHP = enemyMaxHP;
-    console.log(player, enemy);
+    showNewEnemey();
     return;
-}
-
+};
+const showNewEnemey = () => {
+    const newEnemy = document.querySelector('.new-enemy-info h2');
+    newEnemy.innerHTML = `A wild ${enemyName} has appeared. Get ready to battle!`;
+};
 //Start of the game
 const startOfGame = () => {
-    console.log("Hello")
     document.querySelector(".human-player h2").innerHTML = playerName;
     document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
     document.querySelector(".computer-player h2").innerHTML = enemyName;
@@ -206,9 +206,7 @@ const startOfGame = () => {
         img.addEventListener("click", () => {
             const previousAttack = document.querySelector(".previous-attack");
             const playerAttack = img.id;
-            console.log(playerAttack);
             const enemyAttack = Player.foeAttack(previousAttack.innerHTML);
-            console.log(enemyAttack)
             previousAttack.innerHTML = enemyAttack;
             const winner = checkWinner(playerAttack, enemyAttack)
             displayResults(winner, playerAttack, enemyAttack);
@@ -220,15 +218,12 @@ const startOfGame = () => {
 
 const checkWinner = (pAttack, eAttack) => {
     if (pAttack === eAttack) {
-        console.log("It's a tie!");
         return 0;
     }
     if (Player.beats(pAttack, eAttack)) {
-        console.log("You win");
         return 1;
     }
     if (Player.beats(eAttack, pAttack)) {
-        console.log("You lost");
         return -1;
     }
 }
@@ -258,7 +253,6 @@ function verifyWinLoss(){
         const levelUpScreen = document.querySelector(".level-up");
        // attacks.classList.replace("fadeIn", "fadeOut");
         levelUpScreen.classList.replace("fadeOut", "fadeIn");
-        console.log(count);
         return true;
     }
     return false;
@@ -279,7 +273,6 @@ function changeHPStatus(){
     
 
     if(enemyCurrentHP < enemyMaxHP/4){
-        console.log("Entered critical state");
         document.querySelector(".computer-player h3").innerHTML =  `<span style = "color: red">HP: ${enemyCurrentHP}/${enemyMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
     }
     else if(enemyCurrentHP < enemyMaxHP/2){
@@ -314,12 +307,10 @@ const displayResults = (winner, pAttack, eAttack) => {
     }
     if (winner === 1) {
         const damage = Player.dealDamageTo(player, enemy);
-        console.log(damage);
         enemyCurrentHP -= damage;
         if (enemyCurrentHP < 0) {
             enemyCurrentHP = 0;
         }
-        console.log(resultsText)
         resultsText.innerHTML = `${playerName}\'s ${pAttack} beats ${enemyName}\'s ${eAttack}!<br>${playerName} deals <span style = "color: green"> ${damage}</span> damage to ${enemyName}`;
         changeHPStatus();
        // document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
@@ -335,13 +326,21 @@ document.querySelector('.exit').addEventListener('click', () => {
 });
 
 document.querySelectorAll("button").forEach(button => {
-    const levelUpScreen = document.querySelector(".level-up");
-    const attacks = document.querySelector(".choose-attack");
-    const results = document.querySelector(".results");
-    const resultsText = document.querySelector(".info h2");
+    const gameStart = document.querySelector('.game-start');
+    const levelUpScreen = document.querySelector('.level-up');
+    const attacks = document.querySelector('.choose-attack');
+    const results = document.querySelector('.results');
+    const newEnemyInfo = document.querySelector('.new-enemy-info');
+    const resultsText = document.querySelector('.info h2');
     button.addEventListener("click", () => {
         if (button.className === "start" || button.className === "instructions" || button.className === "enter" || button.className === "pause") {
             return;
+        }
+        if (button.className === 'fight') {
+          newEnemyInfo.classList.replace('fadeIn', 'fadeOut');
+          gameStart.classList.replace('fadeOut', 'fadeIn');
+          startOfGame();
+          return;
         }
         if (button.className === "ok") {
             if(verifyWinLoss() == true){
@@ -354,7 +353,6 @@ document.querySelectorAll("button").forEach(button => {
         }
         if (button.className === "hp") {
             setUpGame((player.hp + 10), player.power, player.def);
-            console.log(player, enemy)
            // document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
             document.querySelector(".computer-player h2").innerHTML = enemyName;
             changeHPStatus();
@@ -363,7 +361,6 @@ document.querySelectorAll("button").forEach(button => {
         }
         if (button.className === "power") {
             setUpGame(player.hp, (player.power + 5), player.def);
-            console.log(player, enemy)
             document.querySelector(".human-player h3").innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
             document.querySelector(".computer-player h2").innerHTML = enemyName;
             document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
@@ -376,9 +373,11 @@ document.querySelectorAll("button").forEach(button => {
             document.querySelector(".computer-player h2").innerHTML = enemyName;
             document.querySelector(".computer-player h3").innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
         }
-        levelUpScreen.classList.replace("fadeIn", "fadeOut");
-        attacks.classList.replace("fadeOut", "fadeIn");
-        resultsText.innerHTML = "Choose your attack";
+        levelUpScreen.classList.replace('fadeIn', 'fadeOut');
+        attacks.classList.replace('fadeOut', 'fadeIn');
+        gameStart.classList.replace('fadeIn', 'fadeOut');
+        newEnemyInfo.classList.replace('fadeOut', 'fadeIn');
+        resultsText.innerHTML = 'Choose your attack';
         return;
     })
 })

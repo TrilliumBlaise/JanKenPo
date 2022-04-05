@@ -178,7 +178,7 @@ const setUpGame = (setHP, setPower, setDef) => {
     playerMaxHP = player.hp;
     playerCurrentHP = playerMaxHP;
     enemy = Player.setStats(count);
-    document.querySelector('.enemies-beaten).innerHTML = `Enemies Beaten: ${count}<br>Enemies Remaining: ${15-count}`
+    document.querySelector('.enemies-beaten').innerHTML = `Enemies Beaten: ${count}<br>Enemies Remaining: ${15-count}`
     enemyName = enemy.username;
     enemyMaxHP = enemy.hp;
     enemyCurrentHP = enemyMaxHP;

@@ -11,106 +11,112 @@
     <div class="name" hidden></div>
     <div class="count" hidden>1</div>
     <div class="window fadeIn">
-        <div class="window-home fadeIn">
-            <h2>JanKenPo</h2>
-            <h3>The Battle for the Pond</h3>
-            <div class="button">
-                <button class="start">StArT</button>
-                <button class="instructions">InStRuCtIoNs</button>
-            </div>
+      <div class="window-home fadeIn">
+        <h2>JanKenPo</h2>
+        <h3>The Battle for the Pond</h3>
+        <div class="button">
+          <button class="start">StArT</button>
+          <button class="instructions">InStRuCtIoNs</button>
         </div>
-        <div class="window-start fadeOut">
-            <h2>Please tell me your name!</h2>
-            <input id="name" type="text" placeholder="Name Here">
-            <div class="button">
-                <button class="enter">EnTeR</button>
-            </div>
+      </div>
+      <div class="window-start fadeOut">
+        <h2>Please tell me your name!</h2>
+        <input id="name" type="text" placeholder="Name Here" />
+        <div class="button">
+          <button class="enter">EnTeR</button>
         </div>
+      </div>
     </div>
     <div class="window-instructions">
-        <div class="current" hidden>paragraph-1</div>
-        <div class="p fadeIn" id="paragraph-1">
-            Hello, you are about to embark on an epic battle to control the pond! During the course of this fight, you will encounter a wide range of enemy types, from algae to snakes.
-        </div>
-        <div class="p fadeOut" id="paragraph-2">
-            During each fight, you will be asked to click on either a Rock, a Paper, or a Scissors icon. Doing so will input what your attack type is.
-        </div>
-        <div class="p fadeOut" id="paragraph-3">
-            Rock beats Scissors.<br> Paper beats Rock.<br> Scissors beats Paper.
-        </div>
-        <div class="p fadeOut" id="paragraph-4">
-            If you are victorious, you will inflict damage on your opponent. If your oopponent wins, you will receive damage.
-        </div>
-        <div class="p fadeOut" id= "paragraph-5">
-            Power is the strength of an attack, and defense is the strength of the defense against an attack. The number of HP subtracted for a successful attack is equal to (power - defense) or 5, whichever is greater.
-        </div>
-        <div class="p fadeOut" id="paragraph-6">
-            Once the HP of either you or your opponent reaches 0, the match will end. If you KO your opponent you will be rewarded wtih a power up. But be careful, one loss and you will be taken back to the beginning.
-        </div>
-        <div class="p fadeOut" id="paragraph-7">
-            Do you have what it takes to come out on top?
-        </div>
-        <div class="button">
-            <button class="previous">PrEvIoUs</button>
-            <button class="close">ClOsE</button>
-            <button class="next">NeXt</button>
-        </div>
+      <div class="current" hidden>paragraph-1</div>
+      <div class="p fadeIn" id="paragraph-1">
+        Hello, you are about to embark on an epic battle to control the pond!
+        During the course of this fight, you will encounter a wide range of
+        enemy types, from algae to snakes.
+      </div>
+      <div class="p fadeOut" id="paragraph-2">
+        During each fight, you will be asked to click on either a Rock, a Paper,
+        or a Scissors icon. Doing so will input what your attack type is.
+      </div>
+      <div class="p fadeOut" id="paragraph-3">
+        Rock beats Scissors.<br />
+        Paper beats Rock.<br />
+        Scissors beats Paper.
+      </div>
+      <div class="p fadeOut" id="paragraph-4">
+        If you are victorious, you will inflict damage on your opponent. If your
+        oopponent wins, you will receive damage.
+      </div>
+      <div class="p fadeOut" id="paragraph-5">
+        Power is the strength of an attack, and defense is the strength of the
+        defense against an attack. The number of HP subtracted for a successful
+        attack is equal to (power - defense) or 5, whichever is greater.
+      </div>
+      <div class="p fadeOut" id="paragraph-6">
+        Once the HP of either you or your opponent reaches 0, the match will
+        end. If you KO your opponent you will be rewarded wtih a power up. But
+        be careful, one loss and you will be taken back to the beginning.
+      </div>
+      <div class="p fadeOut" id="paragraph-7">
+        Do you have what it takes to come out on top?
+      </div>
+      <div class="button">
+        <button class="previous">PrEvIoUs</button>
+        <button class="close">ClOsE</button>
+        <button class="next">NeXt</button>
+      </div>
     </div>
     <div class="game fadeOut">
-        <div class = "new-enemy-info">
-            <h2></h2>
-            <button class= "fight">FiGhT</div>
+      <div class="new-enemy-info fadeIn">
+        <h2></h2>
+        <button class="fight">FiGhT</button>
+      </div>
+      <div class="previous-attack" hidden></div>
+      <div class="menu">
+        <button class="exit">ExIt</button>
+        <button class="instructions2">InStRuCtIoNs</button>
+      </div>
+      <div class="game-pause fadeOut">
+        <button class="exit">ExIt</button>
+      </div>
+      <div class="game-start fadeOut">
+        <div class="players">
+          <div class="human-player">
+            <h2>Playername</h2>
+            <h3>CurrentHP/MaxHP</h3>
+          </div>
+          <div class="computer-player">
+            <h2>Computername</h2>
+            <h3>CurrentHP/MaxHP</h3>
+          </div>
         </div>
-        <div class="previous-attack" hidden></div>
-        <div class="menu">
-            <button class="exit">ExIt</button>
-            <button class = "instructions2"> InStRuCtIoNs</button>
-        </div>
-        <div class="game-pause fadeOut">
-            <button class="exit">ExIt</button>
-        </div> 
-        <div class="game-start fadeIn">
-            <div class="players">
-                <div class="human-player">
-                    <h2>Playername</h2>
-                    <h3>CurrentHP/MaxHP</h3>
-                </div>
-                <div class="computer-player">
-                    <h2>Computername</h2>
-                    <h3>CurrentHP/MaxHP</h3>
-                </div>
+        <div class="info fadeIn">
+          <h2>Choose your attack!</h2>
+          <div class="choose-attack fadeIn">
+            <div class="rock">
+              <img id="rock" src="../images/Rock.png" alt="Rock" />
+              RoCk
             </div>
-            <div class="info fadeIn">
-                <h2>Choose your attack!</h2>
-                <div class="choose-attack fadeIn">
-                    <div class="rock">
-                        <img id="rock" src="../images/Rock.png" alt="Rock">
-                        RoCk
-                    </div>
-                    <div class="paper">
-                        <img id="paper" src="../images/paper.png" alt="Paper">
-                        PaPeR
-                    </div>
-                    <div class="scissors">
-                        <img id="scissors" src="../images/scissors.png" alt="Scissors">
-                        ScIsSoRs
-                    </div>
-                </div>
-                <div class="results fadeOut">
-                    <button class="ok">OK</button>
-                    <button class="end">EnD</button>
-                </div>
-                <div class="level-up fadeOut">
-                    <button class="hp">HP +10</button>
-                    <button class="power">POWER +5</button>
-                    <button class="defense">DEFENSE +5</button>
-                </div>
-
+            <div class="paper">
+              <img id="paper" src="../images/paper.png" alt="Paper" />
+              PaPeR
             </div>
+            <div class="scissors">
+              <img id="scissors" src="../images/scissors.png" alt="Scissors" />
+              ScIsSoRs
+            </div>
+          </div>
+          <div class="results fadeOut">
+            <button class="ok">OK</button>
+            <button class="end">EnD</button>
+          </div>
+          <div class="level-up fadeOut">
+            <button class="hp">HP +10</button>
+            <button class="power">POWER +5</button>
+            <button class="defense">DEFENSE +5</button>
+          </div>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
-
-<!--Temp delete later -->

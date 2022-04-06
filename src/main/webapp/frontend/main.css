@@ -173,6 +173,22 @@ button {
     align-items: center;
 }
 
+.human-player span {
+  position: absolute;
+  top: 8%;
+  left: 40%;
+  font-size: 30px;
+  width: 15%;
+  background-color: rgb(0, 0, 85);
+  text-align: left;
+  opacity: 0;
+  z-index: 100;
+}
+
+.human-player:hover span {
+  cursor: default;
+  opacity: 1;
+}
 .human-player h2,
 .computer-player h2 {
     font-size: 90px;

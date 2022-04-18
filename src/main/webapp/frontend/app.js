@@ -9,8 +9,7 @@ let enemy = new Player(null, 0, 0, 0);
 let enemyName;
 let enemyMaxHP;
 let enemyCurrentHP;
-let count = parseInt(document.querySelector(".count").innerHTML);
-console.log("game")
+let count = 0;
 
 //Defines what the home screen can do
 const windowHome = () => {

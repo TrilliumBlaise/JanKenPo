@@ -374,6 +374,10 @@ document.querySelectorAll("button").forEach(button => {
         return;
     })
 })
+addEventListener('beforeunload', e => {
+  e.preventDefault();
+  e.returnValue = `Refreshing your browser will cause you to lose all progress. Proceed?`;
+});
 
 //Call the functions
 windowHome();

@@ -37,7 +37,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'n' && screenCheck.innerText === 'Instructions Screen') {
     showNextInstructionsPage();
   }
-  if ((e.key === 'e' || e.key === 'Enter') && screenCheck.innerText === 'Start Screen') {
+  if (e.key === 'Enter' && screenCheck.innerText === 'Start Screen') {
     startNewGame();
   }
   if (e.key === 'f' && screenCheck.innerText === 'New Enemy Appears Screen') {

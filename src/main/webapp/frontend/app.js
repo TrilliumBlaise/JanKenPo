@@ -15,6 +15,7 @@ let enemyMaxHP;
 let enemyCurrentHP;
 let count = 0;
 
+
 //Adds after load Events to the window
 addEventListener('DOMContentLoaded', e => {
   instructionsParagraph.innerHTML = instructions[0];

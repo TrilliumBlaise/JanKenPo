@@ -151,8 +151,8 @@ const windowInstructions = () => {
 //Defines what the start screen can do
 const windowStart = () => { 
     const inputName = document.querySelector("#name");
-    const enterBtn = document.querySelector(".enter");
     inputName.focus();
+    const enterBtn = document.querySelector(".enter");
     const regex = /[a-zA-Z]/;
     enterBtn.addEventListener("click", () => {
         if (inputName.value === "") {

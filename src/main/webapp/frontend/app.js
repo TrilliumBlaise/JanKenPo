@@ -170,6 +170,10 @@ function validateName() {
     alert('A name must have at least one character.');
     return false;
   }
+  if (inputName.value.length > 12) {
+    alert(`Your name can't be greater than 12 characters`)
+    return false;
+  }      
   return true;
 }
 

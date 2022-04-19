@@ -270,6 +270,10 @@ button {
   cursor: pointer;
 }
 
+.attack {
+  display: inline;
+}
+
 img {
   height: 80%;
 }

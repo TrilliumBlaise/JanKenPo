@@ -75,6 +75,7 @@ const instructionsBtn = document.querySelector('.instructions');
 const homeWindow = document.querySelector('.window-home');
 const startWindow = document.querySelector('.window-start');
 const instructionsWindow = document.querySelector('.window-instructions');
+const inputName = document.querySelector('#name');
 
 startBtn.addEventListener('click', showStartScreen);
 instructionsBtn.addEventListener('click', showInstructionsScreen);
@@ -82,6 +83,7 @@ instructionsBtn.addEventListener('click', showInstructionsScreen);
 function showStartScreen() {
   homeWindow.classList.replace('fadeIn', 'fadeOut');
   startWindow.classList.replace('fadeOut', 'fadeIn');
+  inputName.focus();
   screenCheck.innerText = 'Start Screen';
 }
 
@@ -102,7 +104,6 @@ closeBtn.addEventListener('click', closeInstructionsScreen);
 
 function showPreviousInstructionsPage() {
   const index = instructionsParagraph.dataset.index;
-  console.log(index);
   if (index == 0) return;
   if (index == 6) {
     nextBtn.style.opacity = 1;
@@ -144,8 +145,6 @@ function closeInstructionsScreen() {
 }
 
 //Adds click Events to the buttons on the Start screen
-const inputName = document.querySelector('#name');
-inputName.focus();
 const enterBtn = document.querySelector('.enter');
 
 enterBtn.addEventListener('click', startNewGame);

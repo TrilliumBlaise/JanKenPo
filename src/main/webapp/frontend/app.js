@@ -145,6 +145,7 @@ function closeInstructionsScreen() {
 
 //Adds click Events to the buttons on the Start screen
 const inputName = document.querySelector('#name');
+inputName.focus();
 const enterBtn = document.querySelector('.enter');
 
 enterBtn.addEventListener('click', startNewGame);

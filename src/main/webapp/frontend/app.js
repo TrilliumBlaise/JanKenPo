@@ -152,6 +152,7 @@ const windowInstructions = () => {
 const windowStart = () => { 
     const inputName = document.querySelector("#name");
     const enterBtn = document.querySelector(".enter");
+    inputName.focus();
     const regex = /[a-zA-Z]/;
     enterBtn.addEventListener("click", () => {
         if (inputName.value === "") {

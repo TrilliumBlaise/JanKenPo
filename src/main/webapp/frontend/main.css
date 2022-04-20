@@ -187,7 +187,7 @@ button {
 .computer-player h3 {
   font-size: 60px;
 }
-.human-player span {
+#hover-over {
   position: absolute;
   top: 8%;
   left: 40%;
@@ -199,7 +199,7 @@ button {
   z-index: 100;
 }
 
-.human-player:hover span {
+.human-player:hover #hover-over {
   cursor: default;
   opacity: 1;
 }
@@ -287,3 +287,14 @@ div.fadeIn {
   opacity: 1;
   pointer-events: 1;
 }
+
+.mini-icon{
+  height: 30px;
+  vertical-align: middle;
+}
+
+.breadcrumb{
+  height:30px;
+  font-size: 30px;
+}
+

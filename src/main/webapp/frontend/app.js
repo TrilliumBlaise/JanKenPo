@@ -4,6 +4,7 @@ import { instructions } from './instructions.js';
 //Global variables
 const screenCheck = document.querySelector('.breadcrumb');
 const instructionsParagraph = document.querySelector('.p');
+const PLAYER_STATS = [10, 0, 5];
 let previousScreen;
 let player = new Player(null, 0, 0, 0);
 let playerName;
@@ -57,6 +58,9 @@ document.addEventListener('keydown', e => {
   }
   if ((e.key === 'o' || e.key === 'Enter') && screenCheck.innerText === 'Results Window') {
     removeResultsWindow();
+  }
+  if ((e.key === 'e' || e.key === 'r') && screenCheck.innerText === 'Results Window') {
+    window.location.reload();
   }
   if (e.key === 'h' && screenCheck.innerText === 'Level Up Screen') {
     newGame('hp');
@@ -119,8 +123,6 @@ function showPreviousInstructionsPage() {
 
 function showNextInstructionsPage() {
   const index = instructionsParagraph.dataset.index;
-  console.log(index);
-  console.log(instructions);
   if (index == 6) return;
   if (index == 5) {
     nextBtn.style.opacity = 0;
@@ -157,7 +159,7 @@ function startNewGame() {
   document.querySelector('.window').classList.replace('fadeIn', 'fadeOut');
   document.querySelector('.game').classList.replace('fadeOut', 'fadeIn');
   screenCheck.innerText = 'Game Screen';
-  setUpGame(50, 10, 5);
+  setUpGame(PLAYER_STATS[0], PLAYER_STATS[1], PLAYER_STATS[2]);
 }
 
 function validateName() {
@@ -301,11 +303,11 @@ function changeHPStatus() {
   if (enemyCurrentHP < enemyMaxHP / 4) {
     document.querySelector(
       '.computer-player h3'
-    ).innerHTML = `<span style = "color: red">HP: ${enemyCurrentHP}/${enemyMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `<span style = "color: red">HP: ${enemyCurrentHP}/${enemyMaxHP} </span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   } else if (enemyCurrentHP < enemyMaxHP / 2) {
     document.querySelector(
       '.computer-player h3'
-    ).innerHTML = `<span style = "color: yellow">P: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `<span style = "color: yellow">P: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   } else {
     document.querySelector('.computer-player h3').innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   }
@@ -347,7 +349,7 @@ function verifyWinLoss() {
   }
 
   //Function to reset the values if enemy is dead, level up the player and create a new enemy to fight
-  if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
+  if (playerCurrentHP > 0 && enemyCurrentHP === 0 && count < 15) {
     results.classList.replace('fadeIn', 'fadeOut');
     count++;
     resultsText.innerHTML = 'You win!<br>Choose your Reward!';
@@ -357,9 +359,27 @@ function verifyWinLoss() {
     screenCheck.innerText = 'Level Up Screen';
     return true;
   }
+  if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
+    endTheGame();
+    return true;
+  }
   return false;
 }
 
+function endTheGame() {
+  const endBtn = document.querySelector('.end');
+  endBtn.innerHTML = '<u>R</u>eturn to Start';
+  endBtn.style.height = 'auto';
+  resultsText.innerHTML = 'Congratulations you have conquered the pond. You stand victorious.';
+  okBtn.style.opacity = 0;
+  okBtn.style.pointerEvents = 'none';
+  endBtn.style.opacity = 1;
+  endBtn.style.pointerEvents = 'all';
+
+  endBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
 //Adds click Events to the Level Up Screen
 const levelUpScreen = document.querySelector('.level-up');
 const hpBtn = document.querySelector('.hp');

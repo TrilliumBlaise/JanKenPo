@@ -10,7 +10,6 @@ export default class Player {
 
     //Method for dealing damage
     static dealDamageTo(x, y) {
-        console.log(x.username, x.power, y.username, y.def)
         let damage = (x.power - y.def);
         if (damage <= 0) {
             damage = 5;
@@ -23,14 +22,10 @@ export default class Player {
         const rock = "rock";
         const paper = "paper";
         const scissors = "scissors";
-        if ((x === rock) && (y === scissors)) {
-            return true
-        } else if ((x === paper) && (y === rock)) {
-            return true
-        } else if ((x === scissors) && (y === paper)) {
-            return true
-        } else
-            return false;
+        if ((x === rock) && (y === scissors)) return true
+        if ((x === paper) && (y === rock)) return true 
+        if ((x === scissors) && (y === paper)) return true 
+        return false;
     };
 
     static foeAttack(enemyAttack) {
@@ -154,55 +149,10 @@ export default class Player {
             return "Error";
     };
     static setStats(count) {
-        console.log("setStats")
-        let name = "";
-        let ran = Math.floor(Math.random() * 3);
-        if (count >= 0 && count <= 4) {
-            switch (ran) {
-                case 0:
-                    name = "Snail";
-                    break;
-                case 1:
-                    name = "Tadpole";
-                    break;
-                case 2:
-                    name = "Algae";
-                    break;
-                default:
-                    return "Error occured"
-            }
-            const temp = new Player(name, 10, 15, 0);
-            return temp;
-        } else if (count >= 5 && count <= 9) {
-            switch (ran) {
-                case 0:
-                    name = "Dragonfly";
-                    break;
-                case 1:
-                    name = "Worm";
-                    break;
-                case 2:
-                    name = "Spider";
-                    break;
-            }
-            const temp = new Player(name, 70, 15, 5);
-            return temp;
-        } else if (count >= 10 && count <= 15) {
-            switch (ran) {
-                case 0:
-                    name = "Frog";
-                    break;
-                case 1:
-                    name = "Fish";
-                    break;
-                case 2:
-                    name = "Snake";
-                    break;
-            }
-            const temp = new Player(name, 80, 30, 10);
-            return temp;
-        } else
-        //generates this once the player has defeated 15 enemies
-            return -1;
-    }
+    const ran = Math.floor(Math.random() * 3);
+    if (count <= 4) return new Player(enemies[0].name[ran], enemies[0].stats[0], enemies[0].stats[1], enemies[0].stats[2]);
+    if (count <= 9) return new Player(enemies[1].name[ran], enemies[1].stats[0], enemies[1].stats[1], enemies[1].stats[2]);
+    if (count <= 15) return new Player(enemies[2].name[ran], enemies[2].stats[0], enemies[2].stats[1], enemies[2].stats[2]);
+    return undefined;
+  }
 }

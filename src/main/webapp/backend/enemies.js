@@ -1,6 +1,6 @@
 export const enemies = [
   {
-    name: ['Snail', 'Tadpole', 'Algea'],
+    name: ['Snail', 'Tadpole', 'Algae'],
     stats: [50, 15, 0],
   },
   {

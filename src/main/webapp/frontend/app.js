@@ -4,6 +4,7 @@ import { instructions } from './instructions.js';
 //Global variables
 const screenCheck = document.querySelector('.breadcrumb');
 const instructionsParagraph = document.querySelector('.p');
+const inputName = document.querySelector('#name');
 const PLAYER_STATS = [50, 10, 5];
 let previousScreen;
 let player = new Player(null, 0, 0, 0);
@@ -23,51 +24,70 @@ addEventListener('DOMContentLoaded', e => {
 
 //Keyboard shortcuts
 document.addEventListener('keydown', e => {
+  //Start Button
   if (e.key === 's' && screenCheck.innerText === 'Home Screen') {
     showStartScreen();
   }
-  if (e.key === 'i' && (screenCheck.innerText === 'Home Screen' || screenCheck.innerText === 'Game Screen')) {
+  //Instructions Button
+  if (e.key === 'i') {
     showInstructionsScreen();
   }
+  //Previous Button
   if (e.key === 'p' && screenCheck.innerText === 'Instructions Screen') {
     showPreviousInstructionsPage();
   }
+  //Close Button
   if (e.key === 'c' && screenCheck.innerText === 'Instructions Screen') {
     closeInstructionsScreen();
   }
+  //Next Button
   if (e.key === 'n' && screenCheck.innerText === 'Instructions Screen') {
     showNextInstructionsPage();
   }
+  //Enter Button
   if (e.key === 'Enter' && screenCheck.innerText === 'Start Screen') {
     startNewGame();
   }
+  //Fight Button
   if (e.key === 'f' && screenCheck.innerText === 'New Enemy Appears Screen') {
     showGameScreen();
   }
+  //Rock Button
   if (e.key === 'r' && screenCheck.innerText === 'Game Screen') {
     const img = document.querySelector('#rock');
     attackChoice(img);
   }
+  //Paper Button
   if (e.key === 'p' && screenCheck.innerText === 'Game Screen') {
     const img = document.querySelector('#paper');
     attackChoice(img);
   }
+  //Scissors Button
   if (e.key === 's' && screenCheck.innerText === 'Game Screen') {
     const img = document.querySelector('#scissors');
     attackChoice(img);
   }
-  if ((e.key === 'o' || e.key === 'Enter') && screenCheck.innerText === 'Results Window') {
+  //Ok Button
+  if ((e.key === 'o' || e.key === 'Enter') && screenCheck.innerText === 'Results Screen') {
     removeResultsWindow();
   }
-  if ((e.key === 'e' || e.key === 'r') && screenCheck.innerText === 'Results Window') {
+  //Exit Button
+  if (e.key === 'e') {
     window.location.reload();
   }
+  //Return Button
+  if (screenCheck.innerText === 'Results Screen' && e.key === 'r') {
+    window.location.reload();
+  }
+  //Life Button
   if (e.key === 'l' && screenCheck.innerText === 'Level Up Screen') {
     newGame('hp');
   }
+  //Power Button
   if (e.key === 'p' && screenCheck.innerText === 'Level Up Screen') {
     newGame('power');
   }
+  //Defense Button
   if (e.key === 'd' && screenCheck.innerText === 'Level Up Screen') {
     newGame('defense');
   }
@@ -76,10 +96,10 @@ document.addEventListener('keydown', e => {
 //Adds Click Events to the buttons on the Home Screen
 const startBtn = document.querySelector('.start');
 const instructionsBtn = document.querySelector('.instructions');
+const exitBtn = document.querySelector('.exit');
 const homeWindow = document.querySelector('.window-home');
 const startWindow = document.querySelector('.window-start');
 const instructionsWindow = document.querySelector('.window-instructions');
-const inputName = document.querySelector('#name');
 
 startBtn.addEventListener('click', showStartScreen);
 instructionsBtn.addEventListener('click', showInstructionsScreen);
@@ -87,14 +107,18 @@ instructionsBtn.addEventListener('click', showInstructionsScreen);
 function showStartScreen() {
   homeWindow.classList.replace('fadeIn', 'fadeOut');
   startWindow.classList.replace('fadeOut', 'fadeIn');
-  inputName.focus();
   screenCheck.innerText = 'Start Screen';
+  setTimeout(() => {
+    inputName.focus();
+  }, 100);
+  showExitBtn();
 }
 
 function showInstructionsScreen() {
   previousScreen = screenCheck.innerText;
   instructionsWindow.style.zIndex = 1;
   screenCheck.innerText = 'Instructions Screen';
+  showExitBtn();
 }
 
 //Adds click events to the Instructions Screen
@@ -108,6 +132,7 @@ closeBtn.addEventListener('click', closeInstructionsScreen);
 
 function showPreviousInstructionsPage() {
   const index = instructionsParagraph.dataset.index;
+  console.log(index);
   if (index == 0) return;
   if (index == 6) {
     nextBtn.style.opacity = 1;
@@ -123,6 +148,8 @@ function showPreviousInstructionsPage() {
 
 function showNextInstructionsPage() {
   const index = instructionsParagraph.dataset.index;
+  console.log(index);
+  console.log(instructions);
   if (index == 6) return;
   if (index == 5) {
     nextBtn.style.opacity = 0;
@@ -137,6 +164,9 @@ function showNextInstructionsPage() {
 }
 
 function closeInstructionsScreen() {
+  if (previousScreen === 'Home Screen') {
+    removeExitBtn();
+  }
   instructionsParagraph.dataset.index = 0;
   previousBtn.style.opacity = 0;
   nextBtn.style.opacity = 1;
@@ -172,10 +202,6 @@ function validateName() {
     alert('A name must have at least one character.');
     return false;
   }
-  if (inputName.value.length > 14) {
-    alert(`Your name can't be greater than 14 characters`)
-    return false;
-  }      
   return true;
 }
 
@@ -198,6 +224,20 @@ function showNewEnemeyScreen() {
   screenCheck.innerText = 'New Enemy Appears Screen';
 }
 
+function endTheGame() {
+  const endBtn = document.querySelector('.end');
+  endBtn.innerHTML = '<u>R</u>eturn to Start';
+  endBtn.style.height = 'auto';
+  resultsText.innerHTML = 'Congratulations you have conquered the pond. You stand victorious.';
+  okBtn.style.opacity = 0;
+  okBtn.style.pointerEvents = 'none';
+  endBtn.style.opacity = 1;
+  endBtn.style.pointerEvents = 'all';
+
+  endBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
 //Adds click Events to the New Enemy Appears Screen
 const fightBtn = document.querySelector('.fight');
 const newEnemyInfo = document.querySelector('.new-enemy-info');
@@ -214,15 +254,14 @@ function showGameScreen() {
 
 function startOfGame() {
   document.querySelector('.human-player h2').innerHTML = playerName;
-  document.querySelector('.human-player h3').innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+  document.querySelector(
+    '.human-player h3'
+  ).innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
   document.querySelector('.computer-player h2').innerHTML = enemyName;
   document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
 }
 
 //Adds click Events to the Game Screen
-const exitBtn = document.querySelector('.exit');
-const instructionsBtn2 = document.querySelector('.instructions2');
-
 exitBtn.addEventListener('click', () => {
   window.location.reload();
 });
@@ -231,15 +270,20 @@ document.querySelectorAll('img').forEach(img => {
     attackChoice(img);
   });
 });
-instructionsBtn2.addEventListener('click', showInstructionsScreen);
 
 function attackChoice(img) {
-  const previousAttack = document.querySelector('.previous-attack');
-  const playerAttack = img.id;
-  const enemyAttack = Player.foeAttack(previousAttack.innerHTML);
-  previousAttack.innerHTML = enemyAttack;
-  const winner = checkWinner(playerAttack, enemyAttack);
-  displayResultsWindow(winner, playerAttack, enemyAttack);
+  img.style.opacity = 0;
+  setTimeout(() => {
+    img.style.opacity = 1;
+  }, 150);
+  setTimeout(() => {
+    const previousAttack = document.querySelector('.previous-attack');
+    const playerAttack = img.id;
+    const enemyAttack = Player.foeAttack(previousAttack.innerHTML);
+    previousAttack.innerHTML = enemyAttack;
+    const winner = checkWinner(playerAttack, enemyAttack);
+    displayResultsWindow(winner, playerAttack, enemyAttack);
+  }, 300);
 }
 function checkWinner(pAttack, eAttack) {
   if (pAttack === eAttack) {
@@ -282,7 +326,7 @@ function displayResultsWindow(winner, pAttack, eAttack) {
   //Function to continue game if player and enemy are not dead
   attacks.classList.replace('fadeIn', 'fadeOut');
   results.classList.replace('fadeOut', 'fadeIn');
-  screenCheck.innerText = 'Results Window';
+  screenCheck.innerText = 'Results Screen';
 }
 
 function changeHPStatus() {
@@ -307,13 +351,15 @@ function changeHPStatus() {
   } else if (enemyCurrentHP < enemyMaxHP / 2) {
     document.querySelector(
       '.computer-player h3'
-    ).innerHTML = `<span style = "color: yellow">Life: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    ).innerHTML = `<span style = "color: yellow">P: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   } else {
-    document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    document.querySelector(
+      '.computer-player h3'
+    ).innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   }
 }
 
-//Adds click Events to the Results Window
+//Adds click Events to the Results Screen
 const okBtn = document.querySelector('.ok');
 const attacks = document.querySelector('.choose-attack');
 const results = document.querySelector('.results');
@@ -359,6 +405,8 @@ function verifyWinLoss() {
     screenCheck.innerText = 'Level Up Screen';
     return true;
   }
+
+  //Function to end to end the game
   if (playerCurrentHP > 0 && enemyCurrentHP === 0) {
     endTheGame();
     return true;
@@ -366,20 +414,6 @@ function verifyWinLoss() {
   return false;
 }
 
-function endTheGame() {
-  const endBtn = document.querySelector('.end');
-  endBtn.innerHTML = '<u>R</u>eturn to Start';
-  endBtn.style.height = 'auto';
-  resultsText.innerHTML = 'Congratulations you have conquered the pond. You stand victorious.';
-  okBtn.style.opacity = 0;
-  okBtn.style.pointerEvents = 'none';
-  endBtn.style.opacity = 1;
-  endBtn.style.pointerEvents = 'all';
-
-  endBtn.addEventListener('click', () => {
-    location.reload();
-  });
-}
 //Adds click Events to the Level Up Screen
 const levelUpScreen = document.querySelector('.level-up');
 const hpBtn = document.querySelector('.hp');
@@ -415,7 +449,9 @@ function newGame(reward) {
       '.human-player h3'
     ).innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
     document.querySelector('.computer-player h2').innerHTML = enemyName;
-    document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    document.querySelector(
+      '.computer-player h3'
+    ).innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     return;
   }
   if (reward === 'defense') {
@@ -425,9 +461,19 @@ function newGame(reward) {
       '.human-player h3'
     ).innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
     document.querySelector('.computer-player h2').innerHTML = enemyName;
-    document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    document.querySelector(
+      '.computer-player h3'
+    ).innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     return;
   }
+}
+function showExitBtn() {
+  exitBtn.style.opacity = 1;
+  exitBtn.style.pointerEvents = 'all';
+}
+function removeExitBtn() {
+  exitBtn.style.opacity = 0;
+  exitBtn.style.pointerEvents = 'none';
 }
 
 addEventListener('beforeunload', e => {

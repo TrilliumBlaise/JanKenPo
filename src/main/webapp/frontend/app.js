@@ -5,7 +5,7 @@ import { instructions } from './instructions.js';
 const screenCheck = document.querySelector('.breadcrumb');
 const instructionsParagraph = document.querySelector('.p');
 const inputName = document.querySelector('#name');
-const PLAYER_STATS = [50, 10, 5];
+const PLAYER_STATS = [50, 55, 5];
 let previousScreen;
 let player = new Player(null, 0, 0, 0);
 let playerName;

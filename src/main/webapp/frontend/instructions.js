@@ -12,8 +12,8 @@ export const instructions = [
     Scissors beats Paper.`,
   `If you win the fight, you will inflict damage on your opponent. If your oopponent wins, you will receive damage. The battle will continue
     until either you or your enemy reaches 0 HP.`,
-  `The damage dealt to the loser is calculated by the winner's power and the loser's defense (power - defense).<br />
-    If the loser's defense is >= winner's power, then the damage will equal 5.`,
-  `Each time you defeat an opponent, you will have a selection of rewards to choose from. If you are defeated, you will have to start over.`,
+  `The damage dealt to the loser is calculated by<br>the winner's power and the loser's defense<br>(power - defense).<br />
+    The damage will always be at least 5.`,
+  `Each time you defeat an opponent, you will have a selection of rewards to choose from.<br><br>If you are defeated, you will have to start over.`,
   `Do you have what it takes to come out on top?`,
 ];

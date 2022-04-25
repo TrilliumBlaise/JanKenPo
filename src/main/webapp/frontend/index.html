@@ -9,58 +9,55 @@
 
   <body>
     <header>
+      <img class="icon" src="../images/icon.png" alt="" />
       <div class="title">JaNkEnPo</div>
       <div class="breadcrumb">Home Screen</div>
     </header>
-    <div class="window fadeIn">
+    <div class="window background fadeIn">
       <div class="window-home fadeIn">
         <h2>JanKenPo</h2>
         <h3>The Battle for the Pond</h3>
         <div class="button">
-          <button class="start"><u>S</u>tArT</button>
-          <button class="instructions"><u>I</u>nStRuCtIoNs</button>
+          <button class="start"><u>S</u>TART</button>
         </div>
       </div>
       <div class="window-start fadeOut">
         <h2>Please tell me your name!</h2>
-        <input id="name" type="text" placeholder="Name Here" />
+        <input id="name" type="text" placeholder="Name Here" autocomplete="off" />
         <div class="button">
-          <button class="enter"><u>EnTeR</u></button>
+          <button class="enter"><u>ENTER</u></button>
         </div>
       </div>
     </div>
-    <div class="window-instructions">
+    <div class="menu">
+      <button class="exit"><u>E</u>XIT</button>
+      <button class="instructions"><u>I</u>NSTRUCTIONS</button>
+    </div>
+    <div class="window-instructions background">
       <div class="current" hidden>paragraph-1</div>
       <div class="p" data-index="0"></div>
       <div class="button">
-        <button class="previous"><u>P</u>rEvIoUs</button>
-        <button class="close"><u>C</u>lOsE</button>
-        <button class="next"><u>N</u>eXt</button>
+        <button class="previous"><u>P</u>REVIOUS</button>
+        <button class="close"><u>C</u>LOSE</button>
+        <button class="next"><u>N</u>EXT</button>
       </div>
     </div>
-    <div class="game fadeOut">
+    <div class="game background fadeOut">
       <div class="new-enemy-info fadeIn">
         <h2></h2>
-        <button class="fight"><u>F</u>iGhT</button>
+        <button class="fight"><u>F</u>IGHT</button>
       </div>
       <div class="previous-attack" hidden></div>
-      <div class="menu">
-        <button class="exit"><u>E</u>xIt</button>
-        <button class="instructions2"><u>I</u>nStRuCtIoNs</button>
-      </div>
-      <div class="game-pause fadeOut">
-        <button class="exit"><u>E</u>xIt</button>
-      </div>
       <div class="game-start fadeOut">
         <div class="enemies-beaten"></div>
         <div class="players">
           <div class="human-player">
             <h2>Playername</h2>
             <h3>CurrentHP/MaxHP</h3>
-            <div ><img id="info" class = "mini-icon" src="../images/informationicon.png" alt="Information" />About Stats</div>
-            <span id="hover-over" class="fadeOut">
+            <div><img id="info" class="mini-icon" src="../images/informationicon.png" alt="Information" />About Stats</div>
+            <span class="hover-info">
               Life is the amount of damage you can take.<br />Power is the strength of an attack<br />Defense is the ability to withstand an attack<br />Damage
-              = (Power - Defense) or 5 if defense is >= power
+              = (Power - Defense)<br />Damage is always at least 5
             </span>
           </div>
           <div class="computer-player">
@@ -73,23 +70,23 @@
           <div class="choose-attack fadeIn">
             <div class="rock">
               <img id="rock" src="../images/Rock.png" alt="Rock" />
-              <span class= 'attack'><u>R</u>oCk</span>
+              <span class="attack"><u>R</u>OCK</span>
             </div>
             <div class="paper">
               <img id="paper" src="../images/paper.png" alt="Paper" />
-              <span class= 'attack'><u>P</u>aPeR</span>
+              <span class="attack"><u>P</u>APER</span>
             </div>
             <div class="scissors">
               <img id="scissors" src="../images/scissors.png" alt="Scissors" />
-              <span class= 'attack'><u>S</u>cIsSoRs</span>
+              <span class="attack"><u>S</u>CISSORS</span>
             </div>
           </div>
           <div class="results fadeOut">
             <button class="ok"><u>O</u>K</button>
-            <button class="end"><u>E</u>nD</button>
+            <button class="end"><u>E</u>ND</button>
           </div>
           <div class="level-up fadeOut">
-            <button class="hp"><u>L</u>ife +10</button>
+            <button class="hp"><u>L</u>IFE +10</button>
             <button class="power"><u>P</u>OWER +5</button>
             <button class="defense"><u>D</u>EFENSE +5</button>
           </div>

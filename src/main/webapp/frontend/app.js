@@ -62,7 +62,7 @@ document.addEventListener('keydown', e => {
   if ((e.key === 'e' || e.key === 'r') && screenCheck.innerText === 'Results Window') {
     window.location.reload();
   }
-  if (e.key === 'h' && screenCheck.innerText === 'Level Up Screen') {
+  if (e.key === 'l' && screenCheck.innerText === 'Level Up Screen') {
     newGame('hp');
   }
   if (e.key === 'p' && screenCheck.innerText === 'Level Up Screen') {
@@ -214,9 +214,9 @@ function showGameScreen() {
 
 function startOfGame() {
   document.querySelector('.human-player h2').innerHTML = playerName;
-  document.querySelector('.human-player h3').innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+  document.querySelector('.human-player h3').innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
   document.querySelector('.computer-player h2').innerHTML = enemyName;
-  document.querySelector('.computer-player h3').innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+  document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
 }
 
 //Adds click Events to the Game Screen
@@ -289,27 +289,27 @@ function changeHPStatus() {
   if (playerCurrentHP < playerMaxHP / 4) {
     document.querySelector(
       '.human-player h3'
-    ).innerHTML = `<span style = "color: red">HP: ${playerCurrentHP}/${playerMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `<span style = "color: red">Life: ${playerCurrentHP}/${playerMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
   } else if (playerCurrentHP < playerMaxHP / 2) {
     document.querySelector(
       '.human-player h3'
-    ).innerHTML = `<span style = "color: yellow">HP: ${playerCurrentHP}/${playerMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `<span style = "color: yellow">Life: ${playerCurrentHP}/${playerMaxHP} </span><br>Power: ${player.power}<br>Defense: ${player.def}`;
   } else {
     document.querySelector(
       '.human-player h3'
-    ).innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
   }
 
   if (enemyCurrentHP < enemyMaxHP / 4) {
     document.querySelector(
       '.computer-player h3'
-    ).innerHTML = `<span style = "color: red">HP: ${enemyCurrentHP}/${enemyMaxHP} </span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    ).innerHTML = `<span style = "color: red">Life: ${enemyCurrentHP}/${enemyMaxHP} </span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   } else if (enemyCurrentHP < enemyMaxHP / 2) {
     document.querySelector(
       '.computer-player h3'
-    ).innerHTML = `<span style = "color: yellow">P: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    ).innerHTML = `<span style = "color: yellow">Life: ${enemyCurrentHP}/${enemyMaxHP}</span><br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   } else {
-    document.querySelector('.computer-player h3').innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
   }
 }
 
@@ -413,9 +413,9 @@ function newGame(reward) {
     setUpGame(player.hp, player.power + 5, player.def);
     document.querySelector(
       '.human-player h3'
-    ).innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
     document.querySelector('.computer-player h2').innerHTML = enemyName;
-    document.querySelector('.computer-player h3').innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     return;
   }
   if (reward === 'defense') {
@@ -423,9 +423,9 @@ function newGame(reward) {
     console.log(player, enemy);
     document.querySelector(
       '.human-player h3'
-    ).innerHTML = `HP: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
+    ).innerHTML = `Life: ${playerCurrentHP}/${playerMaxHP}<br>Power: ${player.power}<br>Defense: ${player.def}`;
     document.querySelector('.computer-player h2').innerHTML = enemyName;
-    document.querySelector('.computer-player h3').innerHTML = `HP: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
+    document.querySelector('.computer-player h3').innerHTML = `Life: ${enemyCurrentHP}/${enemyMaxHP}<br>Power: ${enemy.power}<br>Defense: ${enemy.def}`;
     return;
   }
 }

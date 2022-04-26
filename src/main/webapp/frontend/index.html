@@ -34,7 +34,6 @@
       <button class="instructions"><u>I</u>NSTRUCTIONS</button>
     </div>
     <div class="window-instructions">
-      <div class="current" hidden>paragraph-1</div>
       <div class="p" data-index="0"></div>
       <div class="button">
         <button class="previous"><u>P</u>REVIOUS</button>
@@ -47,7 +46,6 @@
         <h2></h2>
         <button class="fight"><u>F</u>IGHT</button>
       </div>
-      <div class="previous-attack" hidden></div>
       <div class="game-start fadeOut">
         <div class="enemies-beaten"></div>
         <div class="players">
@@ -60,7 +58,7 @@
               = (Power - Defense)<br />Damage is always at least 5
             </span>
           </div>
-          <div class="computer-player">
+          <div data-previous-attack= '' class="computer-player">
             <h2>Computername</h2>
             <h3>CurrentHP/MaxHP</h3>
           </div>

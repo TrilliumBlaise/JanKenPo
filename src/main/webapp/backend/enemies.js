@@ -1,14 +1,38 @@
 export const enemies = [
   {
     name: ['Snail', 'Tadpole', 'Algae'],
-    stats: [50, 15, 0],
+    count: {
+      min: 0,
+      max: 4,
+    },
+    stats: {
+      life: 50,
+      power: 15,
+      defense: 0,
+    },
   },
   {
     name: ['Dragon', 'Worm', 'Spider'],
-    stats: [70, 15, 5],
+    count: {
+      min: 5,
+      max: 9,
+    },
+    stats: {
+      life: 70,
+      power: 15,
+      defense: 5,
+    },
   },
   {
     name: ['Frog', 'Fish', 'Snake'],
-    stats: [80, 30, 10],
+    count: {
+      min: 10,
+      max: 15,
+    },
+    stats: {
+      life: 80,
+      power: 30,
+      defense: 10,
+    },
   },
 ];

@@ -131,11 +131,11 @@ export default class Player {
     } else return 'Error';
   }
   static setStats(count) {
-    const ran = Math.floor(Math.random() * 3);
-    if (count <= 4) return new Player(enemies[0].name[ran], enemies[0].stats[0], enemies[0].stats[1], enemies[0].stats[2]);
-    if (count <= 9) return new Player(enemies[1].name[ran], enemies[1].stats[0], enemies[1].stats[1], enemies[1].stats[2]);
-    if (count <= 15) return new Player(enemies[2].name[ran], enemies[2].stats[0], enemies[2].stats[1], enemies[2].stats[2]);
-    return undefined;
+    const ran = Math.floor(Math.random() * enemies.length);
+    const enemy = enemies.find(enemy => {
+      if (count >= enemy.count.min && count <= enemy.count.max) return enemy;
+    });
+    return new Player(enemy?.name[ran], enemy?.stats[0], enemy?.stats[1], enemy?.stats[2]) || undefined;
   }
 }
 

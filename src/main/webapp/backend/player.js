@@ -42,7 +42,7 @@ export default class Player {
     const enemy = enemies.find(enemy => {
       if (count >= enemy.count.min && count <= enemy.count.max) return enemy;
     });
-    return new Player(enemy?.name[ran], enemy?.stats[0], enemy?.stats[1], enemy?.stats[2]) || undefined;
+    return new Player(enemy?.name[ran], enemy?.stats.life, enemy?.stats.power, enemy?.stats.defense) || undefined;
   }
 }
 

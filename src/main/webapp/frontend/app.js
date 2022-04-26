@@ -277,10 +277,10 @@ function attackChoice(img) {
     img.style.opacity = 1;
   }, 150);
   setTimeout(() => {
-    const previousAttack = document.querySelector('.previous-attack');
+    const enemy = document.querySelector('.computer-player');
     const playerAttack = img.id;
-    const enemyAttack = Player.foeAttack(previousAttack.innerHTML);
-    previousAttack.innerHTML = enemyAttack;
+    const enemyAttack = Player.foeAttack(enemy.dataset.previousAttack);
+    enemy.dataset.previousAttack = enemyAttack;
     const winner = checkWinner(playerAttack, enemyAttack);
     displayResultsWindow(winner, playerAttack, enemyAttack);
   }, 300);

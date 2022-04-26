@@ -2,9 +2,10 @@ import { enemies } from './enemies.js';
 
 const MIN_DAMAGE = 5;
 const ATTACKS = [
-  { name: 'rock', beats: 'scissors' },
-  { name: 'paper', beats: 'rock' },
-  { name: 'scissors', beats: 'paper' },
+  { name: '', beats: '', aiOptions: ['rock', 'paper', 'scissors'] },
+  { name: 'rock', beats: 'scissors', aiOptions: ['rock', 'paper', 'paper', 'scissors', 'scissors'] },
+  { name: 'paper', beats: 'rock', aiOptions: ['rock', 'rock', 'paper', 'scissors', 'scissors'] },
+  { name: 'scissors', beats: 'paper', aiOptions: ['rock', 'rock', 'paper', 'paper', 'scissors'] },
 ];
 export default class Player {
   //Constructor for the player and the AI
@@ -31,24 +32,9 @@ export default class Player {
   }
 
   static foeAttack(enemyAttack) {
-    let options;
-    if (enemyAttack === '') {
-      options = ['rock', 'paper', 'scissors'];
-    }
-    //if rock used previous uses this
-    if (enemyAttack === 'rock') {
-      options = ['rock', 'paper', 'paper', 'scissors', 'scissors'];
-    }
-    //if paper used previous uses this
-    if (enemyAttack === 'paper') {
-      options = ['rock', 'rock', 'paper', 'scissors', 'scissors'];
-    }
-    //if scissors used previous uses this
-    if (enemyAttack === 'scissors') {
-      options = ['rock', 'rock', 'paper', 'paper', 'scissors'];
-    }
-    const randomNumber = Math.floor(Math.random() * options.length);
-    return options[randomNumber];
+    const enemyAttacks = ATTACKS.find(attack => attack.name === previousEnemyAttack);
+    const randomNumber = Math.floor(Math.random() * enemyAttacks.aiOptions.length);
+    return enemyAttacks.aiOptions[randomNumber];
   }
   
   static setStats(count) {

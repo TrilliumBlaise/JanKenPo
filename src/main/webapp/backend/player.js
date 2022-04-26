@@ -1,6 +1,11 @@
 import { enemies } from './enemies.js';
 
 const MIN_DAMAGE = 5;
+const ATTACKS = [
+  { name: 'rock', beats: 'scissors' },
+  { name: 'paper', beats: 'rock' },
+  { name: 'scissors', beats: 'paper' },
+];
 export default class Player {
   //Constructor for the player and the AI
   constructor(username, hp, power, def) {
@@ -21,13 +26,8 @@ export default class Player {
 
   //Method for checking who beat who
   static beats(player1, player2) {
-    const rock = 'rock';
-    const paper = 'paper';
-    const scissors = 'scissors';
-    if (player1 === rock && player2 === scissors) return true;
-    if (player1 === paper && player2 === rock) return true;
-    if (player1 === scissors && player2 === paper) return true;
-    return false;
+    const isWin = ATTACKS.some(attack => attack.name === player1 && attack.beats === player2);
+    return isWin;
   }
 
   static foeAttack(enemyAttack) {

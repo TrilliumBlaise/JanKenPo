@@ -30,106 +30,26 @@ export default class Player {
   }
 
   static foeAttack(enemyAttack) {
+    let options;
     if (enemyAttack === '') {
-      let ran = Math.floor(Math.random() * 3);
-      switch (ran) {
-        case 0: {
-          enemyAttack = 'rock';
-          break;
-        }
-        case 1: {
-          enemyAttack = 'paper';
-          break;
-        }
-        case 2: {
-          enemyAttack = 'scissors';
-          break;
-        }
-      }
-      return enemyAttack;
+      options = ['rock', 'paper', 'scissors'];
     }
     //if rock used previous uses this
     if (enemyAttack === 'rock') {
-      let ran = Math.floor(Math.random() * 5);
-      switch (ran) {
-        case 0: {
-          enemyAttack = 'rock';
-          break;
-        }
-        case 1: {
-          enemyAttack = 'paper';
-          break;
-        }
-        case 2: {
-          enemyAttack = 'paper';
-          break;
-        }
-        case 3: {
-          enemyAttack = 'scissors';
-          break;
-        }
-        case 4: {
-          enemyAttack = 'scissors';
-          break;
-        }
-      }
-      return enemyAttack;
+      options = ['rock', 'paper', 'paper', 'scissors', 'scissors'];
     }
     //if paper used previous uses this
     if (enemyAttack === 'paper') {
-      let ran = Math.floor(Math.random() * 5);
-      switch (ran) {
-        case 0: {
-          enemyAttack = 'paper';
-          break;
-        }
-        case 1: {
-          enemyAttack = 'rock';
-          break;
-        }
-        case 2: {
-          enemyAttack = 'rock';
-          break;
-        }
-        case 3: {
-          enemyAttack = 'scissors';
-          break;
-        }
-        case 4: {
-          enemyAttack = 'scissors';
-          break;
-        }
-      }
-      return enemyAttack;
+      options = ['rock', 'rock', 'paper', 'scissors', 'scissors'];
     }
     //if scissors used previous uses this
     if (enemyAttack === 'scissors') {
-      let ran = Math.floor(Math.random() * 5);
-      switch (ran) {
-        case 0: {
-          enemyAttack = 'scissors';
-          break;
-        }
-        case 1: {
-          enemyAttack = 'paper';
-          break;
-        }
-        case 2: {
-          enemyAttack = 'paper';
-          break;
-        }
-        case 3: {
-          enemyAttack = 'rock';
-          break;
-        }
-        case 4: {
-          enemyAttack = 'rock';
-          break;
-        }
-      }
-      return enemyAttack;
-    } else return 'Error';
+      options = ['rock', 'rock', 'paper', 'paper', 'scissors'];
+    }
+    const randomNumber = Math.floor(Math.random() * options.length);
+    return options[randomNumber];
   }
+  
   static setStats(count) {
     const ran = Math.floor(Math.random() * enemies.length);
     const enemy = enemies.find(enemy => {

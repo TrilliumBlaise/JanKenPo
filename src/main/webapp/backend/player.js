@@ -31,8 +31,8 @@ export default class Player {
     return isWin;
   }
 
-  static foeAttack(enemyAttack) {
-    const enemyAttacks = ATTACKS.find(attack => attack.name === enemyAttack);
+  static foeAttack(previousEnemyAttack) {
+    const enemyAttacks = ATTACKS.find(attack => attack.name === previousEnemyAttack);
     const randomNumber = Math.floor(Math.random() * enemyAttacks.aiOptions.length);
     return enemyAttacks.aiOptions[randomNumber];
   }

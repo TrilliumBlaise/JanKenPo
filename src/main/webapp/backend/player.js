@@ -32,7 +32,7 @@ export default class Player {
   }
 
   static foeAttack(enemyAttack) {
-    const enemyAttacks = ATTACKS.find(attack => attack.name === previousEnemyAttack);
+    const enemyAttacks = ATTACKS.find(attack => attack.name === enemyAttack);
     const randomNumber = Math.floor(Math.random() * enemyAttacks.aiOptions.length);
     return enemyAttacks.aiOptions[randomNumber];
   }
